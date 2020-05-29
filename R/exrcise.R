@@ -1,14 +1,14 @@
-#' Strip an rmarkdown document of solution code
+#' Strip an rmarkdown represented as a vector of lines of solution code
 #'
 #' @param lines 
-#' @param strip_args 
+#' @param replace_flags 
 #' @param replacement 
 #'
 #' @return A vector of lines that forms a new .Rmd document
 #' @export
 #'
 #' @examples
-strip_lines <- function(lines, strip_args, replacement = "") {
+replace_code_chunks <- function(lines, replace_flags, replacement = "") {
   chunk.begin <- knitr::all_patterns$md$chunk.begin
   chunk.end <- knitr::all_patterns$md$chunk.end
 
@@ -19,8 +19,8 @@ strip_lines <- function(lines, strip_args, replacement = "") {
   tmp <- starts | head(c(TRUE, ends), -1)
   blocks <- unname(split(lines, cumsum(tmp)))
 
-  purrr::map(blocks, strip_chunks,  
-             strip_args = strip_args, 
+  purrr::map(blocks, replace_block,  
+             replace_flags = replace_flags, 
              replacement = replacement) %>%
     unlist()
 }
@@ -40,7 +40,7 @@ filter_ends <- function(starts, ends){
 #' Title
 #'
 #' @param block 
-#' @param strip_args 
+#' @param replace_flags 
 #' @param replacement 
 #'
 #' @return
@@ -49,7 +49,7 @@ filter_ends <- function(starts, ends){
 #' @export
 #'
 #' @examples
-strip_chunks <- function(block, strip_args, replacement = "") {
+replace_block <- function(block, replace_flags, replacement = "") {
   chunk.begin <- knitr::all_patterns$md$chunk.begin
   is_chunk = grepl(chunk.begin, block[1])
   if (is_chunk) {
@@ -59,8 +59,9 @@ strip_chunks <- function(block, strip_args, replacement = "") {
       stringr::str_replace('^([a-zA-Z0-9_]+)', '') %>% # strip engine
       stringr::str_replace_all('^\\s*,*|,*\\s*$', '') %>% # remove empty options
       knitr:::parse_params()
-    
-    if (any(unlist(params[strip_args]))){ # check if any of the strip arguments are TRUE
+    # if any of the replace_flags are found
+    # replace the chunk code with the replacement string
+    if (any(unlist(params[replace_flags]))){ 
       block <- c(block[1], 
                 replacement,
                 block[length(block)]) #return only the boundaries of the blocks
@@ -72,4 +73,4 @@ strip_chunks <- function(block, strip_args, replacement = "") {
 
 # lines <- readr::read_lines("solution_test.Rmd")
 # 
-# strip_document(lines, strip_args = "solution", replacement = "### Your Code Here")
+# replace_code_chunks(lines, replace_flags = "solution", replacement = "### Your Code Here")
