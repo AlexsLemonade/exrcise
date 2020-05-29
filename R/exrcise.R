@@ -9,9 +9,9 @@ NULL
 
 #' Read an Rmd file and write a version with selective code chunks replaced
 #'
-#' @param infile A file string or file handle of an .Rmd file
+#' @param infile A file path or file handle of an .Rmd file
 #'     from which code chunks will be removed
-#' @param outfile A file string or file handle to which to
+#' @param outfile A file path or file handle to which to
 #'     write the .Rmd file with replacements.
 #' @param replace_flags A character vector of code chunk options
 #'     that if set to TRUE will have their code replaced.
