@@ -1,1 +1,1 @@
-# exrcise: Selectively Exorcise Code Chunks for Exercises
+# exrcise: Selectively Excise Code Chunks for Exercises
