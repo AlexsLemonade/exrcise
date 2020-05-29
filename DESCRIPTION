@@ -1,6 +1,6 @@
 Package: exrcise
 Type: Package
-Title: Selectively Exorcise Code Chunks For Exercises
+Title: Selectively Exorcise Code Chunks for Exercises
 Version: 0.0.1
 Authors@R: person(c("Joshua", "A."), "Shapiro", 
                   email = "josh.shapiro@ccdatalab.org",
