@@ -7,7 +7,8 @@
 #' @return A vector of lines that forms a new .Rmd document
 #' @export
 #'
-#' @examples
+#' @examples replace_code_chunks(lines, replace_flags = "solution", replacement = "### Your Code Here")
+
 replace_code_chunks <- function(lines, replace_flags, replacement = "") {
   chunk.begin <- knitr::all_patterns$md$chunk.begin
   chunk.end <- knitr::all_patterns$md$chunk.end
@@ -47,8 +48,6 @@ filter_ends <- function(starts, ends){
 #' 
 #' @importFrom magrittr %>%
 #' @export
-#'
-#' @examples
 replace_block <- function(block, replace_flags, replacement = "") {
   chunk.begin <- knitr::all_patterns$md$chunk.begin
   is_chunk = grepl(chunk.begin, block[1])
@@ -69,8 +68,3 @@ replace_block <- function(block, replace_flags, replacement = "") {
   } 
   return(block)
 }
-
-
-# lines <- readr::read_lines("solution_test.Rmd")
-# 
-# replace_code_chunks(lines, replace_flags = "solution", replacement = "### Your Code Here")

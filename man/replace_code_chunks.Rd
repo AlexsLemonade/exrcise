@@ -19,3 +19,6 @@ A vector of lines that forms a new .Rmd document
 \description{
 Strip an rmarkdown represented as a vector of lines of solution code
 }
+\examples{
+replace_code_chunks(lines, replace_flags = "solution", replacement = "### Your Code Here")
+}
