@@ -8,23 +8,23 @@
 exrcise(infile, outfile, replace_flags, replacement = "")
 }
 \arguments{
-\item{infile}{a file string or file handle of a .Rmd file
+\item{infile}{A file string or file handle of an .Rmd file
 from which code chunks will be removed}
 
-\item{outfile}{a file string or file handle of a .Rmd file
-to write the excised file}
+\item{outfile}{A file string or file handle to which to
+write the .Rmd file with replacements.}
 
-\item{replace_flags}{a character vector of code chunk options
+\item{replace_flags}{A character vector of code chunk options
 that if set to TRUE will have their code replaced.}
 
-\item{replacement}{a character vector that code chunks will be
+\item{replacement}{A character vector that code chunks will be
 replaced with, one element per line.}
 }
 \value{
-a character vector of the output lines, invisibly.
+A character vector of the output lines, invisibly.
 }
 \examples{
 exrcise(infile, outfile,
-        replace_flags = "solution",
-        replacement = "### Your Code Here")
+    replace_flags = "solution",
+    replacement = "### Your Code Here")
 }

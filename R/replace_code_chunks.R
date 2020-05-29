@@ -1,14 +1,17 @@
-#' Strip an rmarkdown represented as a vector of lines of solution code
+#' Replace code from an rmarkdown document as a vector of lines
 #'
 #' @param lines 
 #' @param replace_flags 
 #' @param replacement 
 #'
 #' @return A vector of lines that forms a new .Rmd document
+#' @importFrom magrittr %>%
 #' @export
 #'
-#' @examples replace_code_chunks(lines, replace_flags = "solution", replacement = "### Your Code Here")
-
+#' @examples 
+#' replace_code_chunks(lines, 
+#'     replace_flags = "solution", 
+#'     replacement = "### Your Code Here")
 replace_code_chunks <- function(lines, replace_flags, replacement = "") {
   chunk.begin <- knitr::all_patterns$md$chunk.begin
   chunk.end <- knitr::all_patterns$md$chunk.end
@@ -26,6 +29,7 @@ replace_code_chunks <- function(lines, replace_flags, replacement = "") {
     unlist()
 }
 
+# filter a boolean vector of potential chunk ends to only the real ones.
 filter_ends <- function(starts, ends){
   start_locs <- which(starts)
   end_locs <- which(ends)
@@ -38,7 +42,7 @@ filter_ends <- function(starts, ends){
 }
 
 
-#' Title
+#' Conditionally replace code in a block of lines
 #'
 #' @param block 
 #' @param replace_flags 

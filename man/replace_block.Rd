@@ -2,7 +2,7 @@
 % Please edit documentation in R/replace_code_chunks.R
 \name{replace_block}
 \alias{replace_block}
-\title{Title}
+\title{Conditionally replace code in a block of lines}
 \usage{
 replace_block(block, replace_flags, replacement = "")
 }
@@ -17,5 +17,5 @@ replace_block(block, replace_flags, replacement = "")
 
 }
 \description{
-Title
+Conditionally replace code in a block of lines
 }
