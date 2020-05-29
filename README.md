@@ -19,6 +19,7 @@ Here is a simple plot of the `cars` dataset
 ```{r}
 plot(cars)
 ```
+
 Use the block below to make a version of the above plot with red points.
 
 ```{r solution = TRUE}
@@ -49,6 +50,7 @@ Here is a simple plot of the `cars` dataset
 ```{r}
 plot(cars)
 ```
+
 Use the block below to make a version of the above plot with red points.
 
 ```{r solution = TRUE}
