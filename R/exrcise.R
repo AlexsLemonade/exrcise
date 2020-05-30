@@ -28,6 +28,6 @@ NULL
 #'     replacement = "### Your Code Here")
 exrcise <- function(infile, outfile, replace_flags, replacement = ""){
   lines <- readr::read_lines(infile)
-  replaced_lines <- replace_code_chunks(lines, replace_flags, replacement = "")
+  replaced_lines <- replace_code_chunks(lines, replace_flags, replacement)
   readr::write_lines(replaced_lines, outfile)
 }
