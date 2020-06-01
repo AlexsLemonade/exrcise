@@ -13,5 +13,5 @@ Use the block below to make a version of the above plot with red points.
 
 ```{r solution = TRUE}
 # a red plot
-plot(cars, col = "red")
+
 ```

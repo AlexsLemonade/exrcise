@@ -1,13 +1,22 @@
 test_that("Exrcise transforms correctly", {
-  in_test <- "blanked.Rmd"
+  in_test <- "reference.Rmd"
   blank_test <- "blanked.Rmd"
   rep_test <- "replaced.Rmd"
-  expect_equal(exrcise(in_test, blank_test,
-                       replace_flags = "solution"),
+  comment_test <- "commented.Rmd"
+
+  expect_equal(exrcise(in_test, paste0(in_test, ".ex"),
+                       replace_flags = "solution",
+                       comment = FALSE),
                readr::read_lines(blank_test))
 
-  expect_equal(exrcise(in_test, rep_test,
+  expect_equal(exrcise(in_test, paste0(in_test, ".ex"),
                        replace_flags = "solution",
-                       replacement = "### YOUR CODE HERE"),
+                       comment = TRUE),
+               readr::read_lines(comment_test))
+
+  expect_equal(exrcise(in_test, paste0(in_test, ".ex"),
+                       replace_flags = "solution",
+                       replacement = "### YOUR CODE HERE",
+                       comment = FALSE),
                readr::read_lines(rep_test))
 })
