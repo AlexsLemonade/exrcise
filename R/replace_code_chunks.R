@@ -92,6 +92,7 @@ replace_code <- function(code, replacement = "", comment = TRUE){
     code[code_lines] <- replacement
     # code lines to be included, one after each set of comments
     code_after_comment <- code_lines & head(c(TRUE, comment_lines), - 1)
+    # return comment lines and one (replaced) code line that follows
     return(code[comment_lines | code_after_comment])
   }
 }
