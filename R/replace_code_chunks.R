@@ -26,7 +26,7 @@ replace_code_chunks <- function(lines,
   # mark the starting lines of a code/text block
   tmp <- starts | head(c(TRUE, ends), -1)
   blocks <- unname(split(lines, cumsum(tmp)))
-
+  
   purrr::map(blocks, replace_block,
              replace_flags = replace_flags,
              replacement = replacement,

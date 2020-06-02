@@ -5,8 +5,6 @@
 #' @name exrcise
 NULL
 
-
-
 #' Read an Rmd file and write a version with selective code chunks replaced
 #'
 #' @param infile A file path or file handle of an .Rmd file
