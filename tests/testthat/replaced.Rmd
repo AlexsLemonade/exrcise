@@ -3,13 +3,19 @@ title: "Test Exrcise"
 output: html_document
 ---
 
-Here is a simple plot of the `cars` dataset
+Non-replaced code.
 
 ```{r}
 plot(cars)
 ```
 
-Use the block below to make a version of the above plot with red points.
+A fenced block.
+
+```r
+sample_code()
+```
+
+A block to replace.
 
 ```{r solution = TRUE}
 ### YOUR CODE HERE
