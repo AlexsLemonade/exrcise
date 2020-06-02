@@ -1,18 +1,22 @@
 #' Replace code from an rmarkdown document as a vector of lines
 #'
-#' @param lines 
-#' @param replace_flags 
-#' @param replacement 
+#' @param lines
+#' @param replace_flags
+#' @param replacement
+#' @param comment
 #'
-#' @return A vector of lines that forms a new .Rmd document
+#' @return A vector of lines that forms the content of a new .Rmd document
 #' @importFrom magrittr %>%
 #' @export
 #'
-#' @examples 
-#' replace_code_chunks(lines, 
-#'     replace_flags = "solution", 
+#' @examples
+#' replace_code_chunks(lines,
+#'     replace_flags = "solution",
 #'     replacement = "### Your Code Here")
-replace_code_chunks <- function(lines, replace_flags, replacement = "") {
+replace_code_chunks <- function(lines,
+                                replace_flags,
+                                replacement = "",
+                                comment = TRUE) {
   chunk.begin <- knitr::all_patterns$md$chunk.begin
   chunk.end <- knitr::all_patterns$md$chunk.end
 
@@ -22,10 +26,11 @@ replace_code_chunks <- function(lines, replace_flags, replacement = "") {
   # mark the starting lines of a code/text block
   tmp <- starts | head(c(TRUE, ends), -1)
   blocks <- unname(split(lines, cumsum(tmp)))
-
-  purrr::map(blocks, replace_block,  
-             replace_flags = replace_flags, 
-             replacement = replacement) %>%
+  
+  purrr::map(blocks, replace_block,
+             replace_flags = replace_flags,
+             replacement = replacement,
+             comment = comment) %>%
     unlist()
 }
 
@@ -44,15 +49,16 @@ filter_ends <- function(starts, ends){
 
 #' Conditionally replace code in a block of lines
 #'
-#' @param block 
-#' @param replace_flags 
-#' @param replacement 
+#' @param block
+#' @param replace_flags
+#' @param replacement
+#' @param comment
 #'
 #' @return
-#' 
+#'
 #' @importFrom magrittr %>%
 #' @export
-replace_block <- function(block, replace_flags, replacement = "") {
+replace_block <- function(block, replace_flags, replacement, comment) {
   chunk.begin <- knitr::all_patterns$md$chunk.begin
   is_chunk = grepl(chunk.begin, block[1])
   if (is_chunk) {
@@ -64,11 +70,29 @@ replace_block <- function(block, replace_flags, replacement = "") {
       knitr:::parse_params()
     # if any of the replace_flags are found
     # replace the chunk code with the replacement string
-    if (any(unlist(params[replace_flags]))){ 
-      block <- c(block[1], 
-                replacement,
-                block[length(block)]) #return only the boundaries of the blocks
+    if (any(unlist(params[replace_flags]))){
+      block <- c(block[1], # chunk header
+                 # chunk body, skipping header and footer
+                 replace_code(head(block[-1], -1),
+                              replacement = replacement,
+                              comment = comment),
+                 tail(block, 1)) # chunk footer
     }
-  } 
+  }
   return(block)
+}
+
+# replace the R code, optionally preserving comments
+replace_code <- function(code, replacement = "", comment = TRUE){
+  if (!comment) {
+    return(replacement)
+  } else {
+    comment_lines <- grepl("^\\s*#", code)
+    code_lines <- !comment_lines
+    code[code_lines] <- replacement
+    # code lines to be included, one after each set of comments
+    code_after_comment <- code_lines & head(c(TRUE, comment_lines), - 1)
+    # return comment lines and one (replaced) code line that follows
+    return(code[comment_lines | code_after_comment])
+  }
 }
