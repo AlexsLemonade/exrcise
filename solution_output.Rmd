@@ -3,7 +3,7 @@ title: "Solution Test"
 output: html_notebook
 ---
 
-This is a test [R Markdown](http://rmarkdown.rstudio.com) Notebook. WE will see if we can render out some alternative versions of the Rmd with different sections removed.
+This is a test [R Markdown](http://rmarkdown.rstudio.com) Notebook. We will see if we can render out some alternative versions of the Rmd with different sections removed.
 
 Here is an example code and plot.
 ```{r example}
@@ -14,4 +14,3 @@ Now imagine that the section below is there for a user to fill in with their ans
 ```{r solution, solution = TRUE}
 
 ```
-
