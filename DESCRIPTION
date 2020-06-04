@@ -1,7 +1,7 @@
 Package: exrcise
 Type: Package
 Title: Selectively Excise Code Chunks for Exercises
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: person(c("Joshua", "A."), "Shapiro", 
                   email = "josh.shapiro@ccdatalab.org",
                   comment = list(ORCID = "0000-0002-6224-0347"),
