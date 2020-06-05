@@ -10,9 +10,11 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' replace_code_chunks(lines,
 #'     replace_flags = "solution",
 #'     replacement = "### Your Code Here")
+#'}
 replace_code_chunks <- function(lines,
                                 replace_flags,
                                 replacement = "",
@@ -26,7 +28,7 @@ replace_code_chunks <- function(lines,
   # mark the starting lines of a code/text block
   tmp <- starts | head(c(TRUE, ends), -1)
   blocks <- unname(split(lines, cumsum(tmp)))
-  
+
   purrr::map(blocks, replace_block,
              replace_flags = replace_flags,
              replacement = replacement,
@@ -57,6 +59,7 @@ filter_ends <- function(starts, ends){
 #' @return
 #'
 #' @importFrom magrittr %>%
+#' @importFrom utils head tail
 #' @export
 replace_block <- function(block, replace_flags, replacement, comment) {
   chunk.begin <- knitr::all_patterns$md$chunk.begin

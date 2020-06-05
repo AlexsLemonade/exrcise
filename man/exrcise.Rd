@@ -5,13 +5,13 @@
 \alias{exrcise}
 \title{exrcise: A package to selectively excise code chunks for exercises.}
 \usage{
-exrcise(infile, outfile, replace_flags, replacement = "")
+exrcise(infile, outfile, replace_flags, replacement = "", comment = TRUE)
 }
 \arguments{
-\item{infile}{A file string or file handle of an .Rmd file
+\item{infile}{A file path or file handle of an .Rmd file
 from which code chunks will be removed}
 
-\item{outfile}{A file string or file handle to which to
+\item{outfile}{A file path or file handle to which to
 write the .Rmd file with replacements.}
 
 \item{replace_flags}{A character vector of code chunk options
@@ -19,12 +19,23 @@ that if set to TRUE will have their code replaced.}
 
 \item{replacement}{A character vector that code chunks will be
 replaced with, one element per line.}
+
+\item{comment}{TRUE or FALSE; whether to include comments.
+Default is TRUE}
 }
 \value{
 A character vector of the output lines, invisibly.
 }
 \examples{
+\dontrun{
+exrcise(infile, outfile,
+    replace_flags = "live",
+    replacement = "")
+
 exrcise(infile, outfile,
     replace_flags = "solution",
-    replacement = "### Your Code Here")
+    replacement = "### Your Code Here",
+    comment = FALSE)
+}
+
 }

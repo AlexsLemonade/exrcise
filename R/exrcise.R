@@ -23,6 +23,7 @@ NULL
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' exrcise(infile, outfile,
 #'     replace_flags = "live",
 #'     replacement = "")
@@ -31,6 +32,7 @@ NULL
 #'     replace_flags = "solution",
 #'     replacement = "### Your Code Here",
 #'     comment = FALSE)
+#'}
 #'
 exrcise <- function(infile, outfile,
                     replace_flags,

@@ -4,14 +4,10 @@
 \alias{replace_block}
 \title{Conditionally replace code in a block of lines}
 \usage{
-replace_block(block, replace_flags, replacement = "")
+replace_block(block, replace_flags, replacement, comment)
 }
 \arguments{
-\item{block}{}
-
-\item{replace_flags}{}
-
-\item{replacement}{}
+\item{comment}{}
 }
 \value{
 

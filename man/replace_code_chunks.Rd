@@ -4,23 +4,21 @@
 \alias{replace_code_chunks}
 \title{Replace code from an rmarkdown document as a vector of lines}
 \usage{
-replace_code_chunks(lines, replace_flags, replacement = "")
+replace_code_chunks(lines, replace_flags, replacement = "", comment = TRUE)
 }
 \arguments{
-\item{lines}{}
-
-\item{replace_flags}{}
-
-\item{replacement}{}
+\item{comment}{}
 }
 \value{
-A vector of lines that forms a new .Rmd document
+A vector of lines that forms the content of a new .Rmd document
 }
 \description{
 Replace code from an rmarkdown document as a vector of lines
 }
 \examples{
-replace_code_chunks(lines, 
-    replace_flags = "solution", 
+\dontrun{
+replace_code_chunks(lines,
+    replace_flags = "solution",
     replacement = "### Your Code Here")
+}
 }
