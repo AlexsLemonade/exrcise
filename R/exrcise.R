@@ -1,11 +1,4 @@
-#' exrcise: A package to selectively excise code chunks for exercises.
-#'
-#'
-#' @docType package
-#' @name exrcise
-NULL
-
-#' Read an Rmd file and write a version with selective code chunks replaced
+#' Read an Rmd file and write a version with code chunks selectively replaced
 #'
 #' @param infile A file path or file handle of an .Rmd file
 #'     from which code chunks will be removed
@@ -18,11 +11,11 @@ NULL
 #' @param comment TRUE or FALSE; whether to include comments.
 #'     Default is TRUE
 #'
-#'
 #' @return A character vector of the output lines, invisibly.
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' exrcise(infile, outfile,
 #'     replace_flags = "live",
 #'     replacement = "")
@@ -31,6 +24,7 @@ NULL
 #'     replace_flags = "solution",
 #'     replacement = "### Your Code Here",
 #'     comment = FALSE)
+#'}
 #'
 exrcise <- function(infile, outfile,
                     replace_flags,

@@ -4,17 +4,23 @@
 \alias{replace_block}
 \title{Conditionally replace code in a block of lines}
 \usage{
-replace_block(block, replace_flags, replacement = "")
+replace_block(block, replace_flags, replacement, comment)
 }
 \arguments{
-\item{block}{}
+\item{block}{A character vector of lines from an Rmarkdown document
+that are either a section of text or a code chunk.}
 
-\item{replace_flags}{}
+\item{replace_flags}{A character vector of code chunk options
+that if set to TRUE will have their code replaced.}
 
-\item{replacement}{}
+\item{replacement}{A character vector that code chunks will be
+replaced with, one element per line.}
+
+\item{comment}{TRUE or FALSE; whether to include comments.}
 }
 \value{
-
+The input code chunk or text, modified only if it is
+    a code chunk with one of the replace_flags in its options
 }
 \description{
 Conditionally replace code in a block of lines
