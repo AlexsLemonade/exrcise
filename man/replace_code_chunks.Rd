@@ -7,7 +7,17 @@
 replace_code_chunks(lines, replace_flags, replacement = "", comment = TRUE)
 }
 \arguments{
-\item{comment}{}
+\item{lines}{A character vector of lines from an Rmarkdown document
+which will be parsed and have included code chunks selectively replaced.}
+
+\item{replace_flags}{A character vector of code chunk options
+that if set to TRUE will have their code replaced.}
+
+\item{replacement}{A character vector that code chunks will be
+replaced with, one element per line.}
+
+\item{comment}{TRUE or FALSE; whether to include comments.
+Default is TRUE}
 }
 \value{
 A vector of lines that forms the content of a new .Rmd document

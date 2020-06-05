@@ -1,9 +1,13 @@
 #' Replace code from an rmarkdown document as a vector of lines
 #'
-#' @param lines
-#' @param replace_flags
-#' @param replacement
-#' @param comment
+#' @param lines A character vector of lines from an Rmarkdown document
+#'     which will be parsed and have included code chunks selectively replaced.
+#' @param replace_flags A character vector of code chunk options
+#'     that if set to TRUE will have their code replaced.
+#' @param replacement A character vector that code chunks will be
+#'     replaced with, one element per line.
+#' @param comment TRUE or FALSE; whether to include comments.
+#'     Default is TRUE
 #'
 #' @return A vector of lines that forms the content of a new .Rmd document
 #' @importFrom magrittr %>%
@@ -51,12 +55,16 @@ filter_ends <- function(starts, ends){
 
 #' Conditionally replace code in a block of lines
 #'
-#' @param block
-#' @param replace_flags
-#' @param replacement
-#' @param comment
+#' @param block A character vector of lines from an Rmarkdown document
+#'     that are either a section of text or a code chunk.
+#' @param replace_flags A character vector of code chunk options
+#'     that if set to TRUE will have their code replaced.
+#' @param replacement A character vector that code chunks will be
+#'     replaced with, one element per line.
+#' @param comment TRUE or FALSE; whether to include comments.
 #'
-#' @return
+#' @return The input code chunk or text, modified only if it is
+#'     a code chunk with one of the replace_flags in its options
 #'
 #' @importFrom magrittr %>%
 #' @importFrom utils head tail
