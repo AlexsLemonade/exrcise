@@ -1,7 +1,7 @@
 Package: exrcise
 Type: Package
-Title: Selectively Exorcise Code Chunks for Exercises
-Version: 0.0.1
+Title: Selectively Excise Code Chunks for Exercises
+Version: 0.1.0
 Authors@R: person(c("Joshua", "A."), "Shapiro", 
                   email = "josh.shapiro@ccdatalab.org",
                   comment = list(ORCID = "0000-0002-6224-0347"),
@@ -10,7 +10,7 @@ Maintainer: Joshua Shapiro <josh.shapiro@ccdatalab.org>
 Description: This package selectively removes the contents of code chunks from 
     Rmarkdown files to produce new notebooks suitable for live coding instruction
     or exercises, while preserving the original file as a reference or answer key.
-License: BSD-3-Clause
+License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
@@ -20,3 +20,5 @@ Imports:
     purrr,
     readr
 RoxygenNote: 7.1.0
+Suggests: 
+    testthat

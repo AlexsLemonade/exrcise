@@ -1,0 +1,22 @@
+---
+title: "Test Exrcise"
+output: html_document
+---
+
+Non-replaced code.
+
+```{r}
+plot(cars)
+```
+
+A fenced block.
+
+```r
+sample_code()
+```
+
+A block to replace.
+
+```{r solution = TRUE}
+### YOUR CODE HERE
+```
